@@ -7,7 +7,7 @@
 		"strictFunctionTypes": true,
 		"sourceMap": true,
 		"outDir": "js",
-		"moduleResolution": "node"
+		"moduleResolution": "node",
 	},
 	"include": [
 		"ts/*"
