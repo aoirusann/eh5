@@ -25,8 +25,18 @@ class Canvas {
 		this.canvasDOM.appendChild(dom);
 		return dom;
 	}
+	public AddMeter(value: number, min: number, max: number, isInline: boolean=true): HTMLElement {
+		let dom = document.createElement("meter");
+		dom.setAttribute("value", value.toString());
+		dom.setAttribute("min", min.toString());
+		dom.setAttribute("max", max.toString());
+		dom.classList.add(isInline ? "inline" : "block");
+		dom.classList.add("meter");
+		this.canvasDOM.appendChild(dom);
+		return dom;
+	}
 
-	// Control
+	// Paragraph Control
 	public AddLineBreak(): HTMLElement {
 		let dom = document.createElement("div");
 		dom.classList.add("block");

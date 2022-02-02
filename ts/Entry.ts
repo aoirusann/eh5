@@ -17,6 +17,7 @@ window.onload = () => {
 		})
 	});
 	canvas.AddInlineText("Text 555");
+	canvas.AddMeter(3, 0, 10);
 
 	let data: GameData = new GameData();
 	data.hp = 3;
