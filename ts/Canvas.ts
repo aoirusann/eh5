@@ -18,6 +18,13 @@ class Canvas {
 		return dom;
 	}
 
+	// DOM Decorator
+	public MakeGrowable(dom: HTMLElement, factor: number = 1): HTMLElement {
+		dom.classList.add("growable");
+		dom.style.setProperty("--grow-factor", factor.toString());
+		return dom
+	}
+
 	// Text
 	public AddInlineText(text: string, cssClass: string = ""): HTMLElement {
 		let dom = this.AddDOM(
@@ -77,6 +84,7 @@ class Canvas {
 			[
 				"inline",
 				"button",
+				"text",
 				cssClass
 			]
 		);
