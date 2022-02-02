@@ -8,48 +8,79 @@ class Canvas {
 		this.canvasDOM = document.getElementById("canvas");
 	}
 
+	private AddDOM(tagName: string, classList: string[]): HTMLElement {
+		let dom = document.createElement(tagName);
+		for (const className of classList) {
+			if(className.length > 0)
+				dom.classList.add(className);
+		}
+		this.canvasDOM.appendChild(dom);
+		return dom;
+	}
+
 	// Text
-	public AddInlineText(text: string): HTMLElement {
-		let dom = document.createElement("scan");
+	public AddInlineText(text: string, cssClass: string = ""): HTMLElement {
+		let dom = this.AddDOM(
+			"scan",
+			[
+				"inline",
+				"text",
+				cssClass
+			]
+		);
 		dom.innerHTML = text;
-		dom.classList.add("inline");
-		dom.classList.add("text");
-		this.canvasDOM.appendChild(dom);
 		return dom;
 	}
-	public AddBlockText(text: string): HTMLElement {
-		let dom = document.createElement("div");
+	public AddBlockText(text: string, cssClass: string = ""): HTMLElement {
+		let dom = this.AddDOM(
+			"scan",
+			[
+				"block",
+				"text",
+				cssClass
+			]
+		);
 		dom.innerHTML = text;
-		dom.classList.add("block");
-		dom.classList.add("text");
-		this.canvasDOM.appendChild(dom);
 		return dom;
 	}
-	public AddMeter(value: number, min: number, max: number, isInline: boolean=true): HTMLElement {
-		let dom = document.createElement("meter");
+	public AddInlineMeter(value: number, min: number, max: number, cssClass: string = ""): HTMLElement {
+		let dom = this.AddDOM(
+			"meter",
+			[
+				"inline",
+				"meter",
+				cssClass
+			]
+		);
 		dom.setAttribute("value", value.toString());
 		dom.setAttribute("min", min.toString());
 		dom.setAttribute("max", max.toString());
-		dom.classList.add(isInline ? "inline" : "block");
-		dom.classList.add("meter");
-		this.canvasDOM.appendChild(dom);
 		return dom;
 	}
 
 	// Paragraph Control
-	public AddLineBreak(): HTMLElement {
-		let dom = document.createElement("div");
-		dom.classList.add("block");
-		this.canvasDOM.appendChild(dom);
+	public AddLineBreak(cssClass: string = ""): HTMLElement {
+		let dom = this.AddDOM(
+			"div",
+			[
+				"block",
+				cssClass
+			]
+		);
 		return dom;
 	}
 
 	// Interact
-	public AddInlineButton(text: string, onleftclick: ()=>void = null, onrightclick: ()=>void = null): HTMLElement {
-		let dom = document.createElement("scan");
+	public AddInlineButton(text: string, onleftclick: ()=>void = null, onrightclick: ()=>void = null, cssClass: string = ""): HTMLElement {
+		let dom = this.AddDOM(
+			"scan",
+			[
+				"inline",
+				"button",
+				cssClass
+			]
+		);
 		dom.innerHTML = text;
-		dom.classList.add("inline");
-		dom.classList.add("button");
 		dom.onclick = (ev: MouseEvent) => {
 			if(ev.button == 0 && onleftclick) {
 				onleftclick();
@@ -63,9 +94,10 @@ class Canvas {
 		this.unregisterCallbacks.push(() => {
 			dom.onclick = null;
 		});
-		this.canvasDOM.appendChild(dom);
 		return dom;
 	}
+
+	// Body
 	public AddBackgroundClick(onleftclick: ()=>void = null, onrightclick: ()=>void = null) {
 		var callback = (ev: MouseEvent) => {
 			if(ev.button == 0 && onleftclick) {
