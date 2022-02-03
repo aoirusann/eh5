@@ -2,11 +2,18 @@ import { canvas } from "./Canvas.js";
 import { sm } from "./ScriptManager.js";
 
 class InstructionSet {
+	public textStyle: string = "";
+	public buttonStyle: string = "";
+
 	public ltxt(value: string) {
-		canvas.AddInlineText(value);
+		canvas.AddInlineText(value, this.textStyle);
 	}
 	public btxt(value: string) {
-		canvas.AddBlockText(value);
+		canvas.AddBlockText(value, this.textStyle);
+	}
+
+	public linebreak() {
+		canvas.AddLineBreak();
 	}
 
 	public lbtn(text: string, onleftclick: ()=>void = null, onrightclick: ()=>void = null) {
@@ -22,7 +29,7 @@ class InstructionSet {
 		} : null;
 
 		canvas.AddInlineButton(
-			text, left, right
+			text, left, right, this.buttonStyle
 		);
 	}
 
@@ -36,4 +43,4 @@ class InstructionSet {
 	}
 }
 
-export let is = new InstructionSet;
+export let ins = new InstructionSet;

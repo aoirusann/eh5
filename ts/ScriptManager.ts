@@ -1,7 +1,11 @@
-import { canvas } from "./Canvas";
+import { GameData } from "./GameData";
 
 class ScriptManager {
-	scriptStack: IterableIterator<any>[] = [];
+	private scriptStack: IterableIterator<any>[] = [];
+	private currentGameData: GameData;
+
+	public get gd() { return this.currentGameData; }
+	public set gd(value: GameData) { this.currentGameData = value; }
 
 	public Continue() {
 		if(this.scriptStack.length == 0) {
@@ -18,7 +22,8 @@ class ScriptManager {
 		// and iterate this funciton to backtrace upward.
 		if(res.done) {
 			this.scriptStack.pop();
-			this.Continue();
+			if(this.scriptStack.length > 0)
+				this.Continue();
 		}
 		
 		// The script is trying to enter a sub script

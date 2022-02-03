@@ -1,0 +1,13 @@
+.place_button {
+	background-color: #a9a9a960;
+	color: black;
+	font-size: medium;
+	border-style: groove;
+	border-width: thin;
+	border-color: black;
+	margin-inline: 2px;
+	padding-inline: 1px;
+}
+.place_button:hover {
+	background-color: chocolate;
+}
