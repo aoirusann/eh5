@@ -16,10 +16,11 @@ export class GameData {
 	time: number = new Date(0).getTime();
 	place: string[] = ["家", "卧室"];
 
-	体力 = new BoundedVariable(0, 100, 100);
+	体力 = new BoundedVariable("体力", 0, 100, 100);
+	清洁度 = new BoundedVariable("清洁度", 0, 100, 100);
+
+	misc = {};
 }
-
-
 
 
 
