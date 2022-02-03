@@ -47,6 +47,8 @@ class Canvas {
 				cssClass
 			]
 		);
+		text = text.replace(/\r\n/g, "<br/>");
+		text = text.replace(/\n/g, "<br/>");
 		dom.innerHTML = text;
 		return dom;
 	}
