@@ -1,4 +1,4 @@
-.place_button {
+.action_button {
 	background-color: #a9a9a960;
 	color: black;
 	font-size: medium;
@@ -8,6 +8,6 @@
 	margin-inline: 2px;
 	padding-inline: 1px;
 }
-.place_button:hover {
+.action_button:hover {
 	background-color: chocolate;
 }

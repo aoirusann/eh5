@@ -1,10 +1,10 @@
 import { sm } from "./ScriptManager.js"
 import { TestSimple } from "./TestSimple.js"
-import { 移动界面 } from "./Scripts/移动界面.js"
 import { GameData } from "./GameData.js"
+import { PlacePanel } from "./Scripts/PlacePanel.js"
 
 window.onload = () => {
 	sm.gd = new GameData();
-	sm.Push(移动界面());
+	sm.Push(PlacePanel());
 	sm.Continue();
 }

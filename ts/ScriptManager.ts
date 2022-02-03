@@ -23,18 +23,17 @@ class ScriptManager {
 		if(res.done)
 			this.scriptStack.pop();
 		
-		// The script is trying to enter a sub script
+		// The script is trying to enter a sub script.
 		// We push the sub script into our script stack,
-		// and iterate this function to enter it.
+		//  we iterate down.
 		var sub = <IterableIterator<any>>res.value;
 		if(sub) {
 			this.Push(res.value);
 			this.Continue();
 		}
-		
 		// If the current script is done & there is no script pushed,
-		//   we iterate upward
-		if(res.done && !sub) {
+		//   we iterate upward.
+		else if(res.done) {
 			if(this.scriptStack.length > 0)
 				this.Continue();
 		}

@@ -1,7 +1,7 @@
 import { canvas } from "./Canvas.js";
 import { BoundedVariable, BV_Add } from "./DataStructures/BoundedVariable.js";
 import { sm } from "./ScriptManager.js";
-import { TimeUtil } from "./TimeUtil.js";
+import { TimeUtility } from "./TimeUtility.js";
 
 class InstructionSet {
 	// style control
@@ -10,15 +10,32 @@ class InstructionSet {
 	public varChangeStyle: string = "";
 
 	// variable helpers
-	public time(duration: number) {
+	public timeElapse(duration: number) {
 		let oldTime = sm.gd.time;
 		sm.gd.time += duration;
 		let newTime = sm.gd.time;
 
 		canvas.AddBlockText(
-			`${TimeUtil.getClockString(oldTime)} => ${TimeUtil.getClockString(newTime)}`,
+			`${TimeUtility.getClockString(oldTime)} => ${TimeUtility.getClockString(newTime)}`,
 			this.varChangeStyle
 		);
+	}
+	/**
+	 * 向前推进时间，直到hour, minute指定的时刻。
+	 * 例如hour==13, minute==32，那么时间就会经过到13:32.
+	 * 若当前时刻大于指定时刻，则会导致日期向前推进一天。
+	 * @param targetHour 0~23
+	 * @param targetMinute 0~59
+	 */
+	public clockUntil(targetHour: number, targetMinute: number) {
+		let curHour = TimeUtility.getHour(sm.gd.time);
+		let curMinute = TimeUtility.getMinute(sm.gd.time);
+
+		let duration = TimeUtility.calClockDiff(
+			curHour, curMinute,
+			targetHour, targetMinute,
+		);
+		this.timeElapse(duration);
 	}
 	public bv(v: BoundedVariable, amount: number): number {
 		let oldValue = v.value;
@@ -30,6 +47,15 @@ class InstructionSet {
 			this.varChangeStyle
 		);
 		return overflow;
+	}
+	public gotoPlace(targetPlace: string[]) {
+		let oldPlace = sm.gd.place;
+		sm.gd.place = targetPlace;
+
+		canvas.AddBlockText(
+			`${oldPlace} => ${targetPlace}`,
+			this.varChangeStyle
+		);
 	}
 
 	// text
@@ -47,16 +73,14 @@ class InstructionSet {
 
 	// button
 	public lbtn(text: string, onleftclick: ()=>void = null, onrightclick: ()=>void = null) {
-		let left = onleftclick ? () => {
+		let left = () => {
 			canvas.UnregisterAll();
 			onleftclick();
-			sm.Continue();
-		} : null;
-		let right = onrightclick ? () => {
+		};
+		let right = () => {
 			canvas.UnregisterAll();
 			onrightclick();
-			sm.Continue();
-		} : null;
+		};
 
 		canvas.AddInlineButton(
 			text, left, right, this.buttonStyle
@@ -71,6 +95,11 @@ class InstructionSet {
 				sm.Continue();
 			}
 		)
+	}
+
+	// refresh
+	public clrbtn() {
+		canvas.UnregisterAll();
 	}
 }
 

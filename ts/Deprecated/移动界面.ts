@@ -1,3 +1,4 @@
+/*
 import { ins } from "../InstructionSet.js"
 import { PLACES } from "../GameData.js"
 import { sm } from "../ScriptManager.js";
@@ -86,3 +87,4 @@ PLACES: ${PLACES}`
 	// Layout
 	ins.linebreak();
 }
+*/

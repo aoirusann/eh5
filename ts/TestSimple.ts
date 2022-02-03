@@ -1,7 +1,7 @@
 import { canvas } from "./Canvas.js"
 import { ins } from "./InstructionSet.js"
 import { DeserializeGameData, GameData, SerializeGameData } from "./GameData.js"
-import { TimeUtil } from "./TimeUtil.js";
+import { TimeUtility } from "./TimeUtility.js";
 import { sm } from "./ScriptManager.js";
 
 function _test_canvas() {
@@ -35,7 +35,7 @@ function _test_gamedata() {
 	let dataStr = SerializeGameData(data);
 	console.log(dataStr);
 	let dataStrObj = DeserializeGameData(dataStr);
-	dataStrObj.time = TimeUtil.addHour(dataStrObj.time, 5);
+	dataStrObj.time = TimeUtility.addHour(dataStrObj.time, 5);
 	console.log(dataStrObj);
 	let dataStrObjStr = SerializeGameData(dataStrObj);
 	console.log(dataStrObjStr);
