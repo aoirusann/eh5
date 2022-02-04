@@ -1,7 +1,7 @@
 import { ins } from "../InstructionSet.js"
 import { sm } from "../ScriptManager.js"
 import { gd } from "../GameData/GameData.js";
-import { TimeUtility } from "../TimeUtility.js";
+import { TimeUtility } from "../DataStructure/TimeUtility.js";
 import { Action } from "./Action.js"
 import * as 家 from "./家.js";
 import * as 学校 from "./学校.js";

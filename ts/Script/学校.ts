@@ -1,43 +1,53 @@
 import { ins } from "../InstructionSet.js";
 import { gd } from "../GameData/GameData.js";
-import { TimeUtility } from "../TimeUtility.js";
+import { TimeUtility } from "../DataStructure/TimeUtility.js";
 import { Action } from "./Action.js";
 import { hp } from "./Helper.js"
 
 export let actions: Action[] = [
 new Action(
-	"洗漱",
+	"等到上课",
 	():void => {
-		ins.timeElapse(TimeUtility.minute(10));
-		ins.bv(gd.清洁度, 30);
+		ins.clockUntil(9, 0);
 		ins.waitclick();
 	},
-	():boolean => {
-		return true;
-	},
-),
-new Action(
-	"上学",
-	():void => {
-		ins.timeElapse(TimeUtility.minute(30));
-		ins.bv(gd.体力, -5);
-		ins.bv(gd.清洁度, -5);
-		ins.gotoPlace(["学校", "教室"]);
-		ins.waitclick();
-	},
-	():boolean => {
+	() => {
 		return hp.isCurrentInInterval(
-			5, 0,
+			6, 0,
 			9, 0
 		);
 	}
 ),
 new Action(
-	"睡觉",
+	"上课",
 	():void => {
-		ins.clockUntil(7, 0);
-		ins.bv(gd.体力, 100);
+		ins.clockUntil(16, 0);
+		ins.bv(gd.体力, -30);
+		ins.bv(gd.清洁度, -20);
 		ins.waitclick();
+	},
+	():boolean => {
+		return hp.isCurrentInInterval(
+			9, 0,
+			16, 0
+		);
+	},
+),
+new Action(
+	"回家",
+	():void => {
+		ins.timeElapse(TimeUtility.minute(30));
+		ins.bv(gd.体力, -5);
+		ins.bv(gd.清洁度, -5);
+		ins.gotoPlace(["家", "卧室"]);
+		ins.waitclick();
+	},
+	() => {
+		return hp.isCurrentInInterval(
+			16, 0,
+			9, 0
+		);
 	}
 )
 ];
+

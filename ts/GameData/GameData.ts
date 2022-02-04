@@ -1,4 +1,4 @@
-import { BoundedVariable } from "../DataStructures/BoundedVariable.js"
+import { BoundedVariable } from "../DataStructure/BoundedVariable.js"
 
 // NOTE: NO METHODS, Only DATA.
 //	Be careful, these serializable classes should not contain methods.

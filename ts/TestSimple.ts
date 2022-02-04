@@ -1,7 +1,7 @@
 import { canvas } from "./Canvas.js"
 import { ins } from "./InstructionSet.js"
 import { GameData } from "./GameData/GameData.js"
-import { TimeUtility } from "./TimeUtility.js";
+import { TimeUtility } from "./DataStructure/TimeUtility.js";
 import { sm } from "./ScriptManager.js";
 import { gdm } from "./GameDataManager.js";
 
