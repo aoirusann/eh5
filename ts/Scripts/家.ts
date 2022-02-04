@@ -1,5 +1,5 @@
 import { ins } from "../InstructionSet.js";
-import { sm } from "../ScriptManager.js";
+import { gd } from "../GameData/GameData.js";
 import { TimeUtility } from "../TimeUtility.js";
 import { Action } from "./Action.js";
 import { hp } from "./Helper.js"
@@ -9,7 +9,7 @@ new Action(
 	"洗漱",
 	():void => {
 		ins.timeElapse(TimeUtility.minute(10));
-		ins.bv(sm.gd.清洁度, 30);
+		ins.bv(gd.清洁度, 30);
 		ins.waitclick();
 	},
 	():boolean => {
@@ -20,8 +20,8 @@ new Action(
 	"上学",
 	():void => {
 		ins.timeElapse(TimeUtility.minute(30));
-		ins.bv(sm.gd.体力, -5);
-		ins.bv(sm.gd.清洁度, -5);
+		ins.bv(gd.体力, -5);
+		ins.bv(gd.清洁度, -5);
 		ins.gotoPlace(["学校", "教室"]);
 		ins.waitclick();
 	},
@@ -36,7 +36,7 @@ new Action(
 	"睡觉",
 	():void => {
 		ins.clockUntil(7, 0);
-		ins.bv(sm.gd.体力, 100);
+		ins.bv(gd.体力, 100);
 		ins.waitclick();
 	}
 )

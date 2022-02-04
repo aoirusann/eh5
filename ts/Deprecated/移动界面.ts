@@ -26,7 +26,7 @@ export function* 移动界面() {
 
 	// Cal place candidates According to current place
 	let placeCands:any = PLACES;
-	for (const current of sm.gd.place) {
+	for (const current of gd.place) {
 		let succeed: boolean = false;
 		for(let i=0; i<placeCands.length; i++) {
 			const element = placeCands[i];
@@ -46,7 +46,7 @@ export function* 移动界面() {
 		if(!succeed) {
 			console.error(
 `Current '${current}' not found in PLACES.
-Current: ${sm.gd.place}
+Current: ${gd.place}
 PLACES: ${PLACES}`
 			);
 			break;
@@ -57,9 +57,9 @@ PLACES: ${PLACES}`
 	{
 		// outer option
 		ins.buttonStyle = "place_button";
-		if(sm.gd.place.length > 0) {
+		if(gd.place.length > 0) {
 			ins.lbtn("向外", () => {
-				sm.gd.place.pop();
+				gd.place.pop();
 				sm.Push(移动界面());
 			});
 		}
@@ -73,7 +73,7 @@ PLACES: ${PLACES}`
 			// Enter into the place
 			ins.buttonStyle = "place_button";
 			ins.lbtn(cand, () => {
-				sm.gd.place.push(cand);
+				gd.place.push(cand);
 				// If we reach the leaf, enter 地点界面
 				if(innerPlaces.length == 0)
 					sm.Push(地点界面());

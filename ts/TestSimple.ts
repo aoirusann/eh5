@@ -1,8 +1,9 @@
 import { canvas } from "./Canvas.js"
 import { ins } from "./InstructionSet.js"
-import { DeserializeGameData, GameData, SerializeGameData } from "./GameData.js"
+import { GameData } from "./GameData/GameData.js"
 import { TimeUtility } from "./TimeUtility.js";
 import { sm } from "./ScriptManager.js";
+import { gdm } from "./GameDataManager.js";
 
 function _test_canvas() {
 	canvas.AddInlineText(`<b>Text 111</b>`).style.setProperty("--font-color", "#ff0000");
@@ -32,12 +33,11 @@ function _test_canvas() {
 
 function _test_gamedata() {
 	let data: GameData = new GameData();
-	let dataStr = SerializeGameData(data);
+	let dataStr = gdm.SerializeGameData(data);
 	console.log(dataStr);
-	let dataStrObj = DeserializeGameData(dataStr);
-	dataStrObj.time = TimeUtility.addHour(dataStrObj.time, 5);
+	let dataStrObj = gdm.DeserializeGameData(dataStr);
 	console.log(dataStrObj);
-	let dataStrObjStr = SerializeGameData(dataStrObj);
+	let dataStrObjStr = gdm.SerializeGameData(dataStrObj);
 	console.log(dataStrObjStr);
 }
 

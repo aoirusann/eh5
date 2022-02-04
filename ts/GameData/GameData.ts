@@ -1,4 +1,4 @@
-import { BoundedVariable } from "./DataStructures/BoundedVariable.js"
+import { BoundedVariable } from "../DataStructures/BoundedVariable.js"
 
 // NOTE: NO METHODS, Only DATA.
 //	Be careful, these serializable classes should not contain methods.
@@ -22,13 +22,4 @@ export class GameData {
 	misc = {};
 }
 
-
-
-
-
-export function SerializeGameData(obj: GameData):string {
-	return JSON.stringify(obj);
-}
-export function DeserializeGameData(str: string):GameData {
-	return <GameData>JSON.parse(str);
-}
+export let gd = new GameData();

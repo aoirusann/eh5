@@ -1,12 +1,8 @@
 import { rmSync } from "fs";
-import { GameData } from "./GameData";
+import { GameData } from "./GameData/GameData";
 
 class ScriptManager {
 	private scriptStack: IterableIterator<any>[] = [];
-	private currentGameData: GameData;
-
-	public get gd() { return this.currentGameData; }
-	public set gd(value: GameData) { this.currentGameData = value; }
 
 	public Continue() {
 		if(this.scriptStack.length == 0) {
