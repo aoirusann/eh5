@@ -25,44 +25,6 @@ class InstructionSet {
 	}
 
 	// ==== variable helpers ====
-	// time
-	public timeElapse(duration: number) {
-		let oldTime = gd.time;
-		gd.time += duration;
-		let newTime = gd.time;
-
-		canvas.AddBlockText(
-			`${TimeUtility.getClockString(oldTime)} => ${TimeUtility.getClockString(newTime)}`,
-			this.varChangeStyle
-		);
-	}
-	/**
-	 * 向前推进时间，直到hour, minute指定的时刻。
-	 * 例如hour==13, minute==32，那么时间就会经过到13:32.
-	 * 若当前时刻大于指定时刻，则会导致日期向前推进一天。
-	 * @param targetHour 0~23
-	 * @param targetMinute 0~59
-	 */
-	public clockUntil(targetHour: number, targetMinute: number) {
-		let curHour = TimeUtility.getHour(gd.time);
-		let curMinute = TimeUtility.getMinute(gd.time);
-
-		let duration = TimeUtility.calClockDiff(
-			curHour, curMinute,
-			targetHour, targetMinute,
-		);
-		this.timeElapse(duration);
-	}
-	// place
-	public gotoPlace(targetPlace: string[]) {
-		let oldPlace = gd.place;
-		gd.place = targetPlace;
-
-		canvas.AddBlockText(
-			`${oldPlace} => ${targetPlace}`,
-			this.varChangeStyle
-		);
-	}
 	// var
 	public bv(v: BoundedVariable, amount: number): number {
 		let oldValue = v.value;

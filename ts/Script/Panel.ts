@@ -3,42 +3,22 @@ import { sm } from "../ScriptManager.js"
 import { gd } from "../GameData/GameData.js";
 import { TimeUtility } from "../DataStructure/TimeUtility.js";
 import { Action } from "./Action.js"
-import * as 家 from "./家.js";
-import * as 学校 from "./学校.js";
 import { Load, Save } from "../Storage.js";
 import { gdm } from "../GameDataManager.js";
 
-export function* PlacePanel() {
+export function* Panel() {
 	while(true) {
-		ins.clrbtn();
-		ins.linebreak();
-		ins.btxt("<b>======================</b>");
-
 		let actions: Action[];
 
-		// Collect actions concerned with place
-		if(gd.place[0] == "家") {
-			actions = 家.actions;
-		}
-		else if(gd.place[0] == "学校") {
-			actions = 学校.actions;
-		}
-
-		// Build action buttons
-		for (const action of actions) {
-			if(action.canDo())
-				action.BuildButton();
-		}
-
 		ins.linebreak();
-		ins.lbtn(
+		new Action(
 			"存档",
 			() => {
 				Save("SaveData0", gd);
 				ins.btxt("存档成功。");
 			}
-		);
-		ins.lbtn(
+		).BuildButton();
+		new Action(
 			"读档",
 			() => {
 				let data = Load("SaveData0");
@@ -50,8 +30,10 @@ export function* PlacePanel() {
 					ins.btxt("没有存档。");
 				}
 			}
-		)
+		).BuildButton();
+		ins.linebreak();
 
+		ins.btxt("<b>======================</b>");
 		yield;
 	}
 }
