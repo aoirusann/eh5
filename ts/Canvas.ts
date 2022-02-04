@@ -132,6 +132,11 @@ class Canvas {
 			callback();
 		}
 	}
+
+	// Scroll Management
+	public ScrollToBottom() {
+		window.scrollTo(0, this.bodyDOM.scrollHeight);
+	}
 }
 
 let canvas = new Canvas();

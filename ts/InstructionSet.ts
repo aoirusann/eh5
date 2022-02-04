@@ -74,12 +74,14 @@ class InstructionSet {
 	// button
 	public lbtn(text: string, onleftclick: ()=>void = null, onrightclick: ()=>void = null) {
 		let left = () => {
-			canvas.UnregisterAll();
+			this.clrbtn();
 			onleftclick();
+			this.scrolldown();
 		};
 		let right = () => {
-			canvas.UnregisterAll();
+			this.clrbtn();
 			onrightclick();
+			this.scrolldown();
 		};
 
 		canvas.AddInlineButton(
@@ -91,8 +93,9 @@ class InstructionSet {
 	public waitclick() {
 		canvas.AddBackgroundClick(
 			() => {
-				canvas.UnregisterAll();
+				this.clrbtn();
 				sm.Continue();
+				this.scrolldown();
 			}
 		)
 	}
@@ -100,6 +103,9 @@ class InstructionSet {
 	// refresh
 	public clrbtn() {
 		canvas.UnregisterAll();
+	}
+	public scrolldown() {
+		canvas.ScrollToBottom();
 	}
 }
 
