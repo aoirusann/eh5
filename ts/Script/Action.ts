@@ -22,19 +22,3 @@ export class ActionUtil {
 		// TODO
 	}
 }
-
-// export class Action {
-	// constructor(
-		// public name: string,
-		// public ondo: ()=>void,
-		// public nextWindow: IterableIterator<any>
-	// ) {}
-
-	// public BuildButton() {
-		// ins.lbtn(this.name, () => {
-			// this.ondo();
-			// sm.Push(this.nextWindow);
-			// ins.waitclick();
-		// });
-	// }
-// }

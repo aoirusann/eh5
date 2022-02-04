@@ -1,4 +1,6 @@
-
+/**
+ * Using Date.getTime() as value.
+ */
 export class TimeUtility {
 	public static day = (value: number) => this.hour(value * 24);
 	public static hour = (value: number) => this.minute(value * 60);
