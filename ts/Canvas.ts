@@ -3,6 +3,9 @@ class Canvas {
 	canvasDOM: HTMLElement | null = null;
 	unregisterCallbacks: (()=>void)[] = [];
 
+	DOMStack: HTMLElement[] = [];
+	DOMStackMaxSize: number = 99999;
+
 	constructor() {
 		this.bodyDOM = document.body;
 		this.canvasDOM = document.getElementById("canvas");
@@ -15,6 +18,14 @@ class Canvas {
 				dom.classList.add(className);
 		}
 		this.canvasDOM.appendChild(dom);
+		
+		this.DOMStack.push(dom);
+		while(this.DOMStackMaxSize < this.DOMStack.length) {
+			let popedDOM = this.DOMStack[0];
+			this.DOMStack.shift();
+			this.canvasDOM.removeChild(popedDOM);
+		}
+
 		return dom;
 	}
 
