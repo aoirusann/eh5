@@ -37,9 +37,14 @@
 
 /* text */
 .text {
-	color: var(--font-color, black);
+	color: var(--font-color, white);
 	font-size: var(--font-size, small);
 }
 .meter {
 	color: var(--meter-color, green);
+}
+
+/* backgrond */
+html {
+	background-color: black;
 }

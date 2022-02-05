@@ -1,13 +1,23 @@
 .action_button {
 	background-color: #a9a9a960;
-	color: black;
 	font-size: medium;
 	border-style: groove;
 	border-width: thin;
-	border-color: black;
+	border-color: rgb(191, 191, 191);
 	margin-inline: 2px;
 	padding-inline: 1px;
 }
 .action_button:hover {
 	background-color: chocolate;
+}
+
+.status_text {
+	font-size: medium;
+	color: rgb(168, 162, 162);
+	margin-inline: 2px;
+	padding-inline: 1px;
+}
+
+.separator {
+	font-size: medium;
 }

@@ -10,10 +10,12 @@ export class Action {
 	) {}
 
 	public BuildButton() {
-		ins.buttonStyle = this.buttonStyle;
-		ins.lbtn(this.name, () => {
-			this.onDo();
-		});
+		if(this.canDo()) {
+			ins.buttonStyle = this.buttonStyle;
+			ins.lbtn(this.name, () => {
+				this.onDo();
+			});
+		}
 	}
 }
 
