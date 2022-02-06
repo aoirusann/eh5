@@ -1,8 +1,6 @@
-import { canvas } from "./Canvas.js";
+import { canvas } from "../core/Canvas.js";
 import { BoundedVariable, BV_Add } from "./DataStructure/BoundedVariable.js";
-import { sm } from "./ScriptManager.js";
-import { gd } from "./GameData/GameData.js"
-import { TimeUtility } from "./DataStructure/TimeUtility.js";
+import { sm } from "../core/ScriptManager.js";
 
 class InstructionSet {
 	// ==== style control ====

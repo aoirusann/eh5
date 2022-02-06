@@ -1,9 +1,9 @@
-import { ins } from "../InstructionSet.js"
-import { gd, Power, Time } from "../GameData/GameData.js";
+import { ins } from "./InstructionSet.js"
+import { gd, Power, Time } from "./GameData/GameData.js";
 import { Action } from "./Action.js"
-import { Load, Save } from "../Storage.js";
-import { gdm } from "../GameDataManager.js";
-import { LBV_GetLevel, LBV_GetThreshold } from "../DataStructure/LevelBoundedVariable.js";
+import { Load, Save } from "../core/Storage.js";
+import { gdm } from "../core/GameDataManager.js";
+import { LBV_GetLevel, LBV_GetThreshold } from "./DataStructure/LevelBoundedVariable.js";
 
 import * as 钻入 from "./Sex/钻入.js"
 
@@ -88,7 +88,7 @@ export function* Panel() {
 			() => {
 				let data = Load("SaveData0");
 				if(data) {
-					gdm.UpdateCurrentFrom(data);
+					gdm.UpdateFrom(gd, data);
 					ins.btxt("读档成功。");
 				}
 				else {

@@ -1,6 +1,3 @@
-import { rmSync } from "fs";
-import { GameData } from "./GameData/GameData";
-
 class ScriptManager {
 	private scriptStack: IterableIterator<any>[] = [];
 

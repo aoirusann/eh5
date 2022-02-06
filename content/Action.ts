@@ -1,5 +1,5 @@
-import { ins } from "../InstructionSet.js";
-import { sm } from "../ScriptManager.js";
+import { ins } from "./InstructionSet.js";
+import { sm } from "../core/ScriptManager.js";
 
 export class Action {
 	constructor(

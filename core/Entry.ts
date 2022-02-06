@@ -1,10 +1,9 @@
 import { sm } from "./ScriptManager.js"
 import { TestSimple } from "./TestSimple.js"
-import { GameData } from "./GameData/GameData.js"
-import { Panel } from "./Script/Panel.js"
+import { Main } from "../content/Main.js"
 
 window.onload = () => {
-	sm.Push(Panel());
+	sm.Push(Main());
 	sm.Continue();
 	// TestSimple();
 }

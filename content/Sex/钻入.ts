@@ -1,6 +1,6 @@
-import { 清醒程度 } from "../../GameData/CharaState.js";
-import { gd } from "../../GameData/GameData.js";
-import { ins } from "../../InstructionSet.js";
+import { 清醒程度 } from "../GameData/CharaState.js";
+import { gd } from "../GameData/GameData.js";
+import { ins } from "../InstructionSet.js";
 import { Action } from "../Action.js";
 import { hp } from "../Helper.js";
 

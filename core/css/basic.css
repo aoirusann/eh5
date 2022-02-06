@@ -43,8 +43,3 @@
 .meter {
 	color: var(--meter-color, green);
 }
-
-/* backgrond */
-html {
-	background-color: black;
-}
