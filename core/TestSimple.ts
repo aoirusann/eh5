@@ -30,6 +30,8 @@ function _test_canvas() {
 	canvas.AddLineBreak();
 
 	canvas.AddInlineMeter(3, 0, 10);
+
+	canvas.AddInlineImage("./test_img.jpg");
 }
 
 /*
@@ -50,7 +52,7 @@ function _test_script() {
 */
 
 export function TestSimple() {
-	//_test_canvas();
+	_test_canvas();
 	//_test_gamedata();
 	//_test_script();
 }
