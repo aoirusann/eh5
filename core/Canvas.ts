@@ -35,6 +35,23 @@ class Canvas {
 		dom.style.setProperty("--grow-factor", factor.toString());
 		return dom
 	}
+	public MakeButton(dom: HTMLElement, onleftclick: ()=>void = null, onrightclick: ()=>void = null): HTMLElement {
+		dom.classList.add("button");
+		dom.onclick = (ev: MouseEvent) => {
+			if(ev.button == 0 && onleftclick) {
+				onleftclick();
+				ev.stopPropagation();
+			}
+			else if(ev.button == 2 && onrightclick) {
+				onrightclick();
+				ev.stopPropagation();
+			}
+		};
+		this.unregisterCallbacks.push(() => {
+			dom.onclick = null;
+		});
+		return dom;
+	}
 
 	// Text
 	public AddInlineText(text: string, cssClass: string = ""): HTMLElement {
@@ -90,31 +107,18 @@ class Canvas {
 		return dom;
 	}
 
-	// Interact
-	public AddInlineButton(text: string, onleftclick: ()=>void = null, onrightclick: ()=>void = null, cssClass: string = ""): HTMLElement {
+	// Image
+	public AddInlineImage(imgPath: string = "", cssClass: string = ""): HTMLElement {
 		let dom = this.AddDOM(
-			"scan",
+			"img",
 			[
 				"inline",
-				"button",
-				"text",
+				"image",
 				cssClass
 			]
 		);
-		dom.innerHTML = text;
-		dom.onclick = (ev: MouseEvent) => {
-			if(ev.button == 0 && onleftclick) {
-				onleftclick();
-				ev.stopPropagation();
-			}
-			else if(ev.button == 2 && onrightclick) {
-				onrightclick();
-				ev.stopPropagation();
-			}
-		};
-		this.unregisterCallbacks.push(() => {
-			dom.onclick = null;
-		});
+		dom.setAttribute("src", imgPath);
+		dom.setAttribute("alt", imgPath);
 		return dom;
 	}
 

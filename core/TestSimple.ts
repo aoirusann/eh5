@@ -9,21 +9,24 @@ function _test_canvas() {
 	canvas.AddInlineText(`<i>Text 222</i>`);
 	canvas.AddInlineText("Text 333Text444");
 	canvas.AddBlockText(`[sadgioio;fhioweafhoweaf]`);
-	canvas.AddInlineButton("Button", ()=>{
-		console.log("Clicked.");
-		canvas.UnregisterAll();
-
-		canvas.AddBackgroundClick(() => {
-			console.log("Background left clicked.");
+	canvas.MakeButton(
+		canvas.AddInlineText("Button"),
+		()=>{
+			console.log("Clicked.");
 			canvas.UnregisterAll();
-		})
-	});
+
+			canvas.AddBackgroundClick(() => {
+				console.log("Background left clicked.");
+				canvas.UnregisterAll();
+			})
+		}
+	);
 	canvas.AddInlineText("Text 555");
 
 	canvas.AddLineBreak();
-	canvas.MakeGrowable(canvas.AddInlineButton("Button1"));
-	canvas.MakeGrowable(canvas.AddInlineButton("Button2"));
-	canvas.MakeGrowable(canvas.AddInlineButton("Button3"));
+	canvas.MakeGrowable(canvas.MakeButton(canvas.AddInlineText("Button1")));
+	canvas.MakeGrowable(canvas.MakeButton(canvas.AddInlineText("Button2")));
+	canvas.MakeGrowable(canvas.MakeButton(canvas.AddInlineText("Button3")));
 	canvas.AddLineBreak();
 
 	canvas.AddInlineMeter(3, 0, 10);
