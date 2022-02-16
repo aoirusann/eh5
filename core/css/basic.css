@@ -37,7 +37,7 @@
 
 /* text */
 .text {
-	color: var(--font-color, white);
+	color: var(--font-color, rgb(0, 0, 0));
 	font-size: var(--font-size, small);
 }
 .meter {
@@ -47,4 +47,11 @@
 /* image */
 .image {
 
+}
+
+/* alt hint */
+.althint[alt]:hover::after {
+	content: attr(alt);
+	position: relative;
+	top: 100%;
 }

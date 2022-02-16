@@ -52,6 +52,11 @@ class Canvas {
 		});
 		return dom;
 	}
+	public MakeAltHint(dom: HTMLElement, hint: string): HTMLElement {
+		dom.classList.add("althint");
+		dom.setAttribute("alt", hint);
+		return dom;
+	}
 
 	// Text
 	public AddInlineText(text: string, cssClass: string = ""): HTMLElement {
